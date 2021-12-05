@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar Jeofetch.jar $@
+java -jar "${BASH_SOURCE%/*}/jeofetch.jar" $@

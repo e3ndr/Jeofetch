@@ -1,2 +1,2 @@
 @echo off
-java -jar jeofetch.jar %*
+java -jar %~dp0/jeofetch.jar %*
