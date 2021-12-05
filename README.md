@@ -15,7 +15,7 @@
 
 <br />
 
-<img src=https://i.imgur.com/ksRdLIJ.png" alt="Jeofetch running under WSL" align="right" height="240px">
+<img src="https://i.imgur.com/ksRdLIJ.png" alt="Jeofetch running under WSL" align="right" height="240px">
 
 Jeofetch is a command-line tool to showoff your system and what you have!
 
