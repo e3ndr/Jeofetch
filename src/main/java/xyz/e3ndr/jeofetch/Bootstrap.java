@@ -69,7 +69,7 @@ public class Bootstrap implements Runnable {
         }
 
         if (this.stay) {
-            KeyHook.addListener(new KeyListener() {
+            KeyHook.CURRENT.addListener(new KeyListener() {
                 @Override
                 public void onKey(char key, boolean alt, boolean control) {
                     System.exit(0);

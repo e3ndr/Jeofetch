@@ -71,7 +71,7 @@ public class Jeofetch {
                 if (config.isNoColor()) {
                     System.out.println(Ansi.stripAnsi(new String(line)));
                 } else {
-                    AnsiConsole.out.println(line);
+                    ConsoleUtil.out.println(line);
                 }
             }
         } else {
@@ -100,7 +100,7 @@ public class Jeofetch {
             if (config.isNoColor()) {
                 System.out.println(Ansi.stripAnsi(mergedDisplay.toString()));
             } else {
-                AnsiConsole.out.println(mergedDisplay);
+                ConsoleUtil.out.println(mergedDisplay);
             }
         }
 
