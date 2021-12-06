@@ -9,26 +9,26 @@ public class OperatingSystems {
     private static final SystemInfo[] operatingSystems = {
 
             // Microsoft
-            new SystemInfo("windows-square.txtart")
+            new SystemInfo("microsoft/windows-square.txtart")
                 .withOs("Windows 11"),
 
-            new SystemInfo("windows-metro.txtart")
+            new SystemInfo("microsoft/windows-metro.txtart")
                 .withOs("Windows")
                 .withKernel("(6\\.2|6\\.3||10\\.0)"),
 
-            new SystemInfo("windows-flag.txtart")
+            new SystemInfo("microsoft/windows-flag.txtart")
                 .withOs("Windows"),
 
-            new SystemInfo("wsl.txtart")
+            new SystemInfo("microsoft/wsl.txtart")
                 .withOs("^Linux")
                 .withKernel("Microsoft"),
 
             // Apple
-            new SystemInfo("apple.txtart")
+            new SystemInfo("apple/apple.txtart")
                 .withOs("(Darwin|mac|Mac)"),
 
             // Linux
-            new SystemInfo("tux.txtart")
+            new SystemInfo("linux/tux.txtart")
                 .withOs("^Linux"),
 
     };
