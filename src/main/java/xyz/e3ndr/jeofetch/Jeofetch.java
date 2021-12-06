@@ -13,7 +13,6 @@ import jline.internal.Ansi;
 import xyz.e3ndr.consoleutil.ConsoleUtil;
 import xyz.e3ndr.consoleutil.ansi.ConsoleAttribute;
 import xyz.e3ndr.consoleutil.ansi.ConsoleColor;
-import xyz.e3ndr.jeofetch.config.OperatingSystems;
 import xyz.e3ndr.jeofetch.types.AsciiArt;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 import xyz.e3ndr.jeofetch.types.SystemInfo;

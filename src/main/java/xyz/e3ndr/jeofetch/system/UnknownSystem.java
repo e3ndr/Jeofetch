@@ -19,4 +19,9 @@ public class UnknownSystem implements ISystem {
         return System.getProperty("os.name", "Unknown");
     }
 
+    @Override
+    public String getVersion() {
+        return "Unknown";
+    }
+
 }

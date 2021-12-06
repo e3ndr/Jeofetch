@@ -9,11 +9,7 @@ import java.util.List;
 import co.casterlabs.rakurai.io.IOUtil;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class UnixSystem implements ISystem {
-
-    public UnixSystem() {
-
-    }
+public class MacOSSystem implements ISystem {
 
     @Override
     public String getKernel() throws IOException {

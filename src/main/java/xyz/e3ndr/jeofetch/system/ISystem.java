@@ -12,4 +12,6 @@ public interface ISystem {
 
     public String getOsName() throws IOException;
 
+    public String getVersion() throws IOException;
+
 }

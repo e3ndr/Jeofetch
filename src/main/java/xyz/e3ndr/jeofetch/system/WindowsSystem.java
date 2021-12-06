@@ -57,6 +57,11 @@ public class WindowsSystem implements ISystem {
         return System.getProperty("os.name");
     }
 
+    @Override
+    public String getVersion() throws IOException {
+        return System.getProperty("os.version", "Unknown");
+    }
+
 //    @SuppressWarnings("unused")
 //    private long getBootUpTime() {
 //        try {

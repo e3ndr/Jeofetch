@@ -1,4 +1,4 @@
-package xyz.e3ndr.jeofetch.config;
+package xyz.e3ndr.jeofetch;
 
 import xyz.e3ndr.jeofetch.types.AsciiArt;
 import xyz.e3ndr.jeofetch.types.SystemInfo;
@@ -28,6 +28,9 @@ public class OperatingSystems {
                 .withOs("(Darwin|mac|Mac)"),
 
             // Linux
+            new SystemInfo("linux/ubuntu.txtart")
+                .withOs("^Ubuntu"),
+
             new SystemInfo("linux/tux.txtart")
                 .withOs("^Linux"),
 
