@@ -31,7 +31,7 @@ public class Jeofetch {
         USERNAME = System.getProperty("user.name", "user");
 
         try {
-            HOSTNAME = InetAddress.getLocalHost().getHostName();
+            HOSTNAME = SystemUtils.getSystemHandler().getHostname();
         } catch (UnknownHostException e) {
             HOSTNAME = "localhost";
         }

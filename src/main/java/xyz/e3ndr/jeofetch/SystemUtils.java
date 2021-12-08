@@ -2,6 +2,7 @@ package xyz.e3ndr.jeofetch;
 
 import java.io.IOException;
 
+import lombok.Getter;
 import xyz.e3ndr.jeofetch.system.ISystem;
 import xyz.e3ndr.jeofetch.system.MacOSSystem;
 import xyz.e3ndr.jeofetch.system.UnixSystem;
@@ -12,7 +13,7 @@ import xyz.e3ndr.jeofetch.types.SystemInfo;
 
 public class SystemUtils {
     private static UnknownSystem unknownSystemHandler = new UnknownSystem();
-    private static ISystem systemHandler;
+    private static @Getter ISystem systemHandler;
 
     static {
         String name = System.getProperty("os.name", "").toLowerCase();

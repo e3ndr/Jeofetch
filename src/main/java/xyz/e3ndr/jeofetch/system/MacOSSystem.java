@@ -2,6 +2,8 @@ package xyz.e3ndr.jeofetch.system;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,16 @@ public class MacOSSystem implements ISystem {
     @Override
     public String getOsName() throws IOException {
         return System.getProperty("os.name", "Unknown");
+    }
+
+    public String getHostname() throws UnknownHostException {
+    	String hostname = InetAddress.getLocalHost().getHostName();
+    	
+    	if (hostname.endsWith(".local")) {
+    		return hostname.substring(0, hostname.length() - ".local".length());
+    	} else {
+    		return hostname;
+    	}
     }
 
     private static CpuInfo getCpuInfo_sysctl() throws IOException {
