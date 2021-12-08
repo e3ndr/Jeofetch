@@ -83,7 +83,7 @@
 		<dependency>
 			<groupId>com.github.e3ndr</groupId>
 			<artifactId>ConsoleUtil</artifactId>
-			<version>7b0e164</version> <!-- BLEEDING -->
+			<version>9d51c20</version> <!-- BLEEDING -->
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
