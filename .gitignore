@@ -11,3 +11,4 @@
 *target/
 dist/jeofetch.jar
 dist/jeofetch.zip
+.DS_Store
