@@ -14,17 +14,18 @@ public class MacOSSystem implements ISystem {
     @Override
     public String getKernel() throws IOException {
         try {
-            InputStream result = Runtime.getRuntime().exec("sh -c 'uname -r'").getInputStream();
+            InputStream result = Runtime.getRuntime().exec("uname -r").getInputStream();
 
             return IOUtil.readInputStreamString(result, StandardCharsets.UTF_8).trim();
         } catch (Exception e) {
+        	e.printStackTrace();
             return "Generic";
         }
     }
 
     @Override
     public CpuInfo getCpuInfo() throws IOException {
-        return getCpuInfo_lscpu();
+        return getCpuInfo_sysctl();
     }
 
     @Override
@@ -32,22 +33,26 @@ public class MacOSSystem implements ISystem {
         return System.getProperty("os.name", "Unknown");
     }
 
-    private static CpuInfo getCpuInfo_lscpu() throws IOException {
-        String[] lscpu = IOUtil.readInputStreamString(Runtime.getRuntime().exec("sh -c 'lscpu'").getInputStream(), StandardCharsets.UTF_8).split("\n");
+    private static CpuInfo getCpuInfo_sysctl() throws IOException {
+        String[] sysctl = IOUtil.readInputStreamString(Runtime.getRuntime().exec("sysctl -a").getInputStream(), StandardCharsets.UTF_8).split("\n");
 
         String cpuModel = "Generic";
         float clockSpeed = 0;
         int coreCount = 0;
 
-        for (String line : lscpu) {
+        for (String line : sysctl) {
             String[] split = line.split(":");
 
-            if (split[0].startsWith("CPU max MHz")) {
-                clockSpeed = Float.parseFloat(split[1].trim()) / 1000f;
-            } else if (split[0].startsWith("CPU(s)")) {
-                coreCount = Integer.parseInt(split[1].trim());
-            } else if (split[0].startsWith("Model name")) {
-                cpuModel = split[1].trim();
+            if (split.length > 1) {
+	            String key = split[0].trim();
+	            String value = split[1].trim();
+	            
+	            if (key.equals("machdep.cpu.thread_count")) {
+	                coreCount = Integer.parseInt(split[1].trim());
+	            } else if (key.equals("machdep.cpu.brand_string")) {
+	                cpuModel = value;
+	                clockSpeed = Float.parseFloat(value.split("\\@")[1].split("GHz")[0].trim()); // ICK
+            }
             }
         }
 
@@ -59,8 +64,9 @@ public class MacOSSystem implements ISystem {
             cpuModel = cpuModel.replace("(TM)", "");
             cpuModel = cpuModel.replace("(r)", "");
             cpuModel = cpuModel.replace("(tm)", "");
+            cpuModel = cpuModel.replace('-', ' ');
 
-            String[] words = cpuModel.split("((?=\\W))");
+            String[] words = cpuModel.split("(?=\\W)");
             List<String> trueWords = new ArrayList<>(words.length);
 
             for (int i = 0; i < words.length; i++) {
