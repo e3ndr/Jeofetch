@@ -23,9 +23,9 @@ Obviously this is to screenshot and show to other people, it isn't really a good
 <br />
 <br />
 
-# Usage
+# Installation & Usage
 
-0. Have Java installed, any version &gt;7 do.
+0. Have Java installed, any version 8 and up will do.
 1. Grab the latest release zip from [here](https://github.com/e3ndr/jeofetch/releases/latest).
 2. Extract the zip to a folder.
 3. Put said folder on your path. (Non-Windows users will also need to run `chmod +x jeofetch`)
