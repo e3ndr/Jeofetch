@@ -45,6 +45,9 @@ public class Jeofetch {
             ConsoleUtil.clearConsole();
         } catch (IOException ignored) {}
 
+        System.out.print("\u001b[H\u001b[2J");
+        System.out.flush();
+
         if (config.isHideSensitive()) {
             USERNAME = "user";
             HOSTNAME = "localhost";
