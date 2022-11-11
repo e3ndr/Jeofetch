@@ -8,7 +8,7 @@ import lombok.Getter;
 import xyz.e3ndr.jeofetch.Jeofetch;
 import xyz.e3ndr.jeofetch.platform.handler.BsdPlatform;
 import xyz.e3ndr.jeofetch.platform.handler.PlatformHandler;
-import xyz.e3ndr.jeofetch.platform.handler.UnixPlatform;
+import xyz.e3ndr.jeofetch.platform.handler.LinuxPlatform;
 import xyz.e3ndr.jeofetch.platform.handler.UnknownPlatform;
 import xyz.e3ndr.jeofetch.platform.handler.WindowsPlatform;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
@@ -28,7 +28,7 @@ public class PlatformUtils {
 
             // Unix
             case LINUX:
-                systemHandler = new UnixPlatform();
+                systemHandler = new LinuxPlatform();
                 break;
 
             case BSD:

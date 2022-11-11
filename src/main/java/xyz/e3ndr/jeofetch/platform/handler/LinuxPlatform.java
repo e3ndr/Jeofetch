@@ -9,7 +9,7 @@ import java.util.List;
 import co.casterlabs.rakurai.io.IOUtil;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class UnixPlatform implements PlatformHandler {
+public class LinuxPlatform implements PlatformHandler {
 
     @Override
     public String getKernel() throws IOException {
