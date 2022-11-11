@@ -36,7 +36,7 @@ public class Jeofetch {
     public static void print(Bootstrap config) throws InterruptedException, IOException {
         try {
             ConsoleUtil.clearConsole();
-        } catch (IOException ignored) {} ;
+        } catch (IOException ignored) {}
 
         if (config.isHideSensitive()) {
             USERNAME = "user";
@@ -104,7 +104,7 @@ public class Jeofetch {
     private static char[][] getTable(boolean enableColor, Bootstrap config) {
         List<String> table = new LinkedList<>(
             Arrays.asList(
-                String.format("\033[39m%s%s%s@%s%s", art.getThemeColor().getForeground(), USERNAME, "\033[39m", art.getThemeColor().getForeground(), HOSTNAME),
+                String.format("%s%s%s@%s%s", art.getThemeColor().getForeground(), USERNAME, ConsoleColor.TERMINAL_DEFAULT, art.getThemeColor().getForeground(), HOSTNAME),
                 String.format("-------+-----------------------"),
                 String.format("OS     | %s", osInfo.getOs()),
                 String.format("Kernel | %s", osInfo.getKernel()),
@@ -132,11 +132,11 @@ public class Jeofetch {
                 String[] line = table.get(i).split("\\|");
 
                 if (line.length > 1) {
-                    table.set(i, String.format("%s%s%s|%s", art.getThemeColor().getForeground(), line[0], "\033[39m", line[1]));
+                    table.set(i, String.format("%s%s%s|%s", art.getThemeColor().getForeground(), line[0], ConsoleColor.TERMINAL_DEFAULT, line[1]));
                 }
 
                 // Reset the color at the end of the line.
-                table.set(i, table.get(i) + "\033[39m");
+                table.set(i, table.get(i) + ConsoleColor.TERMINAL_DEFAULT);
             }
 
             // Generate the color table.
@@ -172,10 +172,9 @@ public class Jeofetch {
                 lightColorsDisplay.append(color.getBackground()).append("  ");
             }
 
-            darkColorsDisplay.append("\033[49m");
-            lightColorsDisplay.append("\033[49m");
+            darkColorsDisplay.append(ConsoleColor.TERMINAL_DEFAULT.getBackground());
+            lightColorsDisplay.append(ConsoleColor.TERMINAL_DEFAULT.getBackground());
 
-            // TODO Fix light color palette
             table.set(table.size() - 2, darkColorsDisplay.toString());
             table.set(table.size() - 1, lightColorsDisplay.toString());
         }
