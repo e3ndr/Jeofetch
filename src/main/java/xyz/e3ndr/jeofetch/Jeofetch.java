@@ -112,9 +112,15 @@ public class Jeofetch {
     }
 
     private static char[][] getTable(boolean enableColor, Bootstrap config) {
+        String themeColor = "";
+
+        if (art != null) {
+            themeColor = art.getThemeColor().getForeground();
+        }
+
         List<String> table = new LinkedList<>(
             Arrays.asList(
-                String.format("%s%s%s@%s%s", art.getThemeColor().getForeground(), USERNAME, ConsoleColor.TERMINAL_DEFAULT, art.getThemeColor().getForeground(), HOSTNAME),
+                String.format("%s%s%s@%s%s", themeColor, USERNAME, ConsoleColor.TERMINAL_DEFAULT, themeColor, HOSTNAME),
                 String.format("-------+-----------------------"),
                 String.format("OS     | %s", osInfo.getOs()),
                 String.format("Kernel | %s", osInfo.getKernel()),
@@ -128,7 +134,7 @@ public class Jeofetch {
             );
         }
 
-        if (config.getForced() != null) {
+        if ((config.getForced() != null) && (art != null)) {
             table.add(
                 String.format("Art    | %s%s%s", ConsoleAttribute.BOLD.getAnsi(), art.getName(), ConsoleAttribute.RESET.getAnsi())
             );
@@ -148,7 +154,7 @@ public class Jeofetch {
                 String[] line = table.get(i).split("\\|");
 
                 if (line.length > 1) {
-                    table.set(i, String.format("%s%s%s|%s", art.getThemeColor().getForeground(), line[0], ConsoleColor.TERMINAL_DEFAULT, line[1]));
+                    table.set(i, String.format("%s%s%s|%s", themeColor, line[0], ConsoleColor.TERMINAL_DEFAULT, line[1]));
                 }
 
                 // Reset the color at the end of the line.
