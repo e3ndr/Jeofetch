@@ -9,18 +9,18 @@ public class ArtTable {
     // @formatter:off
     private static final SystemInfo[] operatingSystems = {
         // Windows
-        new SystemInfo("microsoft/windows-square.txtart")
+        new SystemInfo("windows/square.txtart")
             .withOs("Windows 11"),
 
-        new SystemInfo("microsoft/windows-metro.txtart")
+        new SystemInfo("windows/metro.txtart")
             .withOs("Windows")
             .withKernel("(6\\.2|6\\.3||10\\.0)"),
 
-        new SystemInfo("microsoft/windows-flag.txtart")
+        new SystemInfo("windows/flag.txtart")
             .withOs("Windows"),
 
         // BSD
-        new SystemInfo("apple/apple.txtart")
+        new SystemInfo("bsd/apple.txtart")
             .withOs("(Darwin|mac|Mac)"),
 
         // Linux
