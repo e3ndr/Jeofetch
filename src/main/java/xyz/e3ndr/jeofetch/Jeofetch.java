@@ -1,15 +1,11 @@
 package xyz.e3ndr.jeofetch;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.fusesource.jansi.AnsiConsole;
-
-import jline.internal.Ansi;
 import xyz.e3ndr.consoleutil.ConsoleUtil;
 import xyz.e3ndr.consoleutil.ansi.ConsoleAttribute;
 import xyz.e3ndr.consoleutil.ansi.ConsoleColor;
@@ -57,7 +53,7 @@ public class Jeofetch {
         }
 
         if (!config.isNoColor()) {
-            AnsiConsole.out.print(ConsoleAttribute.RESET.getAnsi());
+            System.out.print(ConsoleAttribute.RESET.getAnsi());
         }
 
         char[][] display = getTable(!config.isNoColor(), config);
@@ -66,11 +62,10 @@ public class Jeofetch {
         if (config.isNoArt()) {
             // Draw the result.
             for (char[] line : display) {
-                // Save some cpu.
                 if (config.isNoColor()) {
-                    System.out.println(Ansi.stripAnsi(new String(line)));
+                    System.out.println(AnsiUtil.stripAnsi(new String(line)));
                 } else {
-                    ConsoleUtil.out.println(line);
+                    System.out.println(line);
                 }
             }
         } else {
@@ -80,7 +75,7 @@ public class Jeofetch {
 
             for (int i = 0; i < MAX_HEIGHT; i++) {
                 String displayLine = (i < display.length) ? new String(display[i]) : "";
-                int nonColoredLength = Ansi.stripAnsi(displayLine).length();
+                int nonColoredLength = AnsiUtil.stripAnsi(displayLine).length();
 
                 if (nonColoredLength > MAX_TABLE_WIDTH) {
                     displayLine = displayLine.substring(0, MAX_TABLE_WIDTH);
@@ -97,9 +92,9 @@ public class Jeofetch {
             }
 
             if (config.isNoColor()) {
-                System.out.println(Ansi.stripAnsi(mergedDisplay.toString()));
+                System.out.println(AnsiUtil.stripAnsi(mergedDisplay.toString()));
             } else {
-                ConsoleUtil.out.println(mergedDisplay);
+                System.out.println(mergedDisplay);
             }
         }
 
@@ -156,7 +151,7 @@ public class Jeofetch {
                     ConsoleColor.GRAY
             };
             ConsoleColor[] lightColors = {
-                    ConsoleColor.DARK_GRAY,
+                    ConsoleColor.DARK_GREY,
                     ConsoleColor.LIGHT_RED,
                     ConsoleColor.LIGHT_GREEN,
                     ConsoleColor.LIGHT_YELLOW,

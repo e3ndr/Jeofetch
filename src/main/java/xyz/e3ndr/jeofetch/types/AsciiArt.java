@@ -4,9 +4,6 @@ import org.jetbrains.annotations.Nullable;
 
 import lombok.Getter;
 import xyz.e3ndr.consoleutil.ansi.ConsoleColor;
-import xyz.e3ndr.fastloggingframework.FastLoggingFramework;
-import xyz.e3ndr.fastloggingframework.logging.FastLogger;
-import xyz.e3ndr.fastloggingframework.logging.LogLevel;
 import xyz.e3ndr.jeofetch.FileUtil;
 import xyz.e3ndr.jeofetch.Jeofetch;
 
@@ -72,9 +69,8 @@ public class AsciiArt {
                 this.artLines = artLines.replace("{_}", "").split("\n");
                 this.isValid = true;
             } catch (Exception e) {
-                FastLogger.logStatic(LogLevel.SEVERE, "An error occurred whilst loading art:");
-                FastLogger.logException(e);
-                FastLoggingFramework.close();
+                System.err.println("An error occurred whilst loading art:");
+                e.printStackTrace();
                 System.exit(1);
             }
         }

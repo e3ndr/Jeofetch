@@ -10,7 +10,6 @@ import xyz.e3ndr.consoleutil.ConsoleUtil;
 import xyz.e3ndr.consoleutil.input.InputKey;
 import xyz.e3ndr.consoleutil.input.KeyHook;
 import xyz.e3ndr.consoleutil.input.KeyListener;
-import xyz.e3ndr.fastloggingframework.FastLoggingFramework;
 
 @Getter
 @Command(name = "print", mixinStandardHelpOptions = true, version = ":^)", description = "Prints a neofetch-esque report")
@@ -68,9 +67,6 @@ public class Bootstrap implements Runnable {
         } catch (Throwable t) {
             t.printStackTrace();
         }
-
-        // Prevent the message.
-        FastLoggingFramework.close();
 
         if (this.stay) {
             KeyHook.CURRENT.addListener(new KeyListener() {
