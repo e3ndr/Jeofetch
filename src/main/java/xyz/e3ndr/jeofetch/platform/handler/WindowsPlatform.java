@@ -1,4 +1,4 @@
-package xyz.e3ndr.jeofetch.system;
+package xyz.e3ndr.jeofetch.platform.handler;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -8,7 +8,7 @@ import java.util.List;
 import co.casterlabs.rakurai.io.IOUtil;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class WindowsSystem implements ISystem {
+public class WindowsPlatform implements PlatformHandler {
 
     @Override
     public String getKernel() throws IOException {

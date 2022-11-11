@@ -1,9 +1,10 @@
 package xyz.e3ndr.jeofetch;
 
+import xyz.e3ndr.jeofetch.platform.LinuxDistro;
 import xyz.e3ndr.jeofetch.types.AsciiArt;
 import xyz.e3ndr.jeofetch.types.SystemInfo;
 
-public class OperatingSystems {
+public class ArtTable {
 
     // These all are to match the properties via regex.
     private static final SystemInfo[] operatingSystems = {
@@ -19,17 +20,16 @@ public class OperatingSystems {
             new SystemInfo("microsoft/windows-flag.txtart")
                 .withOs("Windows"),
 
-            new SystemInfo("microsoft/wsl.txtart")
-                .withOs("^Linux")
-                .withKernel("Microsoft"),
-
             // Apple
             new SystemInfo("apple/apple.txtart")
                 .withOs("(Darwin|mac|Mac)"),
 
             // Linux
+            new SystemInfo("microsoft/wsl.txtart")
+                .withDistro(LinuxDistro.WSL),
+
             new SystemInfo("linux/ubuntu.txtart")
-                .withOs("^Ubuntu"),
+                .withDistro(LinuxDistro.UBUNTU),
 
             new SystemInfo("linux/tux.txtart")
                 .withOs("^Linux"),

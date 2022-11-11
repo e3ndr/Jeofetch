@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.Value;
 import lombok.With;
 import xyz.e3ndr.jeofetch.Jeofetch;
+import xyz.e3ndr.jeofetch.platform.LinuxDistro;
 
 @Value
 @ToString
@@ -16,6 +17,7 @@ public class SystemInfo {
     private @With String kernel;
     private @With long lastBootUpTime;
 
+    private @With LinuxDistro linuxDistro;
     private @With String artName;
 
     public SystemInfo() {
@@ -23,7 +25,13 @@ public class SystemInfo {
     }
 
     public SystemInfo(String artName) {
-        this(null, null, -1, artName);
+        this(null, null, -1, null, artName);
+    }
+
+    public SystemInfo withDistro(LinuxDistro distro) {
+        return this
+            .withKernel(distro.kernelMatch)
+            .withOs(distro.osMatch);
     }
 
     /**
@@ -43,7 +51,7 @@ public class SystemInfo {
         return true;
     }
 
-    private boolean regexHas(String regex, String str) {
+    public static boolean regexHas(String regex, String str) {
         return Pattern.compile(regex).matcher(str).find();
     }
 

@@ -1,4 +1,4 @@
-package xyz.e3ndr.jeofetch.system;
+package xyz.e3ndr.jeofetch.platform.handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,7 +11,7 @@ import java.util.List;
 import co.casterlabs.rakurai.io.IOUtil;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class MacOSSystem implements ISystem {
+public class BsdPlatform implements PlatformHandler {
 
     @Override
     public String getKernel() throws IOException {
@@ -20,7 +20,7 @@ public class MacOSSystem implements ISystem {
 
             return IOUtil.readInputStreamString(result, StandardCharsets.UTF_8).trim();
         } catch (Exception e) {
-        	e.printStackTrace();
+            e.printStackTrace();
             return "Generic";
         }
     }
@@ -35,14 +35,15 @@ public class MacOSSystem implements ISystem {
         return System.getProperty("os.name", "Unknown");
     }
 
+    @Override
     public String getHostname() throws UnknownHostException {
-    	String hostname = InetAddress.getLocalHost().getHostName();
-    	
-    	if (hostname.endsWith(".local")) {
-    		return hostname.substring(0, hostname.length() - ".local".length());
-    	} else {
-    		return hostname;
-    	}
+        String hostname = InetAddress.getLocalHost().getHostName();
+
+        if (hostname.endsWith(".local")) {
+            return hostname.substring(0, hostname.length() - ".local".length());
+        } else {
+            return hostname;
+        }
     }
 
     private static CpuInfo getCpuInfo_sysctl() throws IOException {
@@ -56,15 +57,15 @@ public class MacOSSystem implements ISystem {
             String[] split = line.split(":");
 
             if (split.length > 1) {
-	            String key = split[0].trim();
-	            String value = split[1].trim();
-	            
-	            if (key.equals("machdep.cpu.thread_count")) {
-	                coreCount = Integer.parseInt(split[1].trim());
-	            } else if (key.equals("machdep.cpu.brand_string")) {
-	                cpuModel = value;
-	                clockSpeed = Float.parseFloat(value.split("\\@")[1].split("GHz")[0].trim()); // ICK
-            }
+                String key = split[0].trim();
+                String value = split[1].trim();
+
+                if (key.equals("machdep.cpu.thread_count")) {
+                    coreCount = Integer.parseInt(split[1].trim());
+                } else if (key.equals("machdep.cpu.brand_string")) {
+                    cpuModel = value;
+                    clockSpeed = Float.parseFloat(value.split("\\@")[1].split("GHz")[0].trim()); // ICK
+                }
             }
         }
 

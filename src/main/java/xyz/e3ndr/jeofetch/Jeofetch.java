@@ -6,9 +6,13 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.jetbrains.annotations.Nullable;
+
 import xyz.e3ndr.consoleutil.ConsoleUtil;
 import xyz.e3ndr.consoleutil.ansi.ConsoleAttribute;
 import xyz.e3ndr.consoleutil.ansi.ConsoleColor;
+import xyz.e3ndr.jeofetch.platform.LinuxDistro;
+import xyz.e3ndr.jeofetch.platform.PlatformUtils;
 import xyz.e3ndr.jeofetch.types.AsciiArt;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 import xyz.e3ndr.jeofetch.types.SystemInfo;
@@ -17,9 +21,12 @@ public class Jeofetch {
     public static final int MAX_TABLE_WIDTH = 50;
     public static final int MAX_HEIGHT = 20;
 
-    public static final SystemInfo osInfo = SystemUtils.getSystemInfo();
-    public static final CpuInfo cpuInfo = SystemUtils.getCpuInfo();
+    public static final SystemInfo osInfo = PlatformUtils.getSystemInfo();
+    public static final CpuInfo cpuInfo = PlatformUtils.getCpuInfo();
+    public static final @Nullable LinuxDistro linuxDistro = PlatformUtils.getLinuxDistro();
+
     public static AsciiArt art;
+
     public static String USERNAME;
     public static String HOSTNAME;
 
@@ -27,7 +34,7 @@ public class Jeofetch {
         USERNAME = System.getProperty("user.name", "user");
 
         try {
-            HOSTNAME = SystemUtils.getSystemHandler().getHostname();
+            HOSTNAME = PlatformUtils.getSystemHandler().getHostname();
         } catch (UnknownHostException e) {
             HOSTNAME = "localhost";
         }
@@ -44,7 +51,7 @@ public class Jeofetch {
         }
 
         if (!config.isNoArt()) {
-            art = OperatingSystems.getArtForSystem(config.getForced());
+            art = ArtTable.getArtForSystem(config.getForced());
 
 //            if (!art.isValid()) {
 //                System.err.println("Invalid art.");
@@ -111,6 +118,12 @@ public class Jeofetch {
                 String.format("CPU    | %s (%d) @ %.2fGHz", cpuInfo.getModel(), cpuInfo.getCoreCount(), cpuInfo.getClockSpeed())
             )
         );
+
+        if (linuxDistro != null) {
+            table.add(
+                String.format("Distro | %s%s%s", ConsoleAttribute.BOLD.getAnsi(), linuxDistro.name, ConsoleAttribute.RESET.getAnsi())
+            );
+        }
 
         if (config.getForced() != null) {
             table.add(

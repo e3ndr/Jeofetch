@@ -1,4 +1,4 @@
-package xyz.e3ndr.jeofetch.system;
+package xyz.e3ndr.jeofetch.platform.handler;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public interface ISystem {
+public interface PlatformHandler {
 
     public String getKernel() throws IOException;
 

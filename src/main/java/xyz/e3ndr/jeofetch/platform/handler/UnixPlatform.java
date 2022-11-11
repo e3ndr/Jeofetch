@@ -1,4 +1,4 @@
-package xyz.e3ndr.jeofetch.system;
+package xyz.e3ndr.jeofetch.platform.handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,11 +9,7 @@ import java.util.List;
 import co.casterlabs.rakurai.io.IOUtil;
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class UnixSystem implements ISystem {
-
-    public UnixSystem() {
-
-    }
+public class UnixPlatform implements PlatformHandler {
 
     @Override
     public String getKernel() throws IOException {

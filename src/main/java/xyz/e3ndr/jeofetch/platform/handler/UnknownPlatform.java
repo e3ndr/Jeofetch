@@ -1,8 +1,8 @@
-package xyz.e3ndr.jeofetch.system;
+package xyz.e3ndr.jeofetch.platform.handler;
 
 import xyz.e3ndr.jeofetch.types.CpuInfo;
 
-public class UnknownSystem implements ISystem {
+public class UnknownPlatform implements PlatformHandler {
 
     @Override
     public String getKernel() {
