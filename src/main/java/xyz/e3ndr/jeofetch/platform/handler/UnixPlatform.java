@@ -14,7 +14,7 @@ public class UnixPlatform implements PlatformHandler {
     @Override
     public String getKernel() throws IOException {
         try {
-            InputStream result = Runtime.getRuntime().exec("sh -c 'uname -r'").getInputStream();
+            InputStream result = Runtime.getRuntime().exec("uname -r").getInputStream();
 
             return IOUtil.readInputStreamString(result, StandardCharsets.UTF_8).trim();
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class UnixPlatform implements PlatformHandler {
     }
 
     private static CpuInfo getCpuInfo_lscpu() throws IOException {
-        String[] lscpu = IOUtil.readInputStreamString(Runtime.getRuntime().exec("sh -c 'lscpu'").getInputStream(), StandardCharsets.UTF_8).split("\n");
+        String[] lscpu = IOUtil.readInputStreamString(Runtime.getRuntime().exec("lscpu").getInputStream(), StandardCharsets.UTF_8).split("\n");
 
         String cpuModel = "Generic";
         float clockSpeed = 0;
