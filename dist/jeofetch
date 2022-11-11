@@ -1,0 +1,2 @@
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+java -jar "$DIR/jeofetch.jar" $@
