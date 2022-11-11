@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public enum LinuxDistro {
     UBUNTU("Ubuntu", "^Ubuntu", null),
-    WSL("WSL", "^Linux", "Microsoft"),
+    WSL("WSL", "^Linux", "microsoft"),
 
     ;
 
