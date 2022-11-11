@@ -6,35 +6,35 @@ import xyz.e3ndr.jeofetch.types.SystemInfo;
 
 public class ArtTable {
 
-    // These all are to match the properties via regex.
+    // @formatter:off
     private static final SystemInfo[] operatingSystems = {
+        // Windows
+        new SystemInfo("microsoft/windows-square.txtart")
+            .withOs("Windows 11"),
 
-            // Microsoft
-            new SystemInfo("microsoft/windows-square.txtart")
-                .withOs("Windows 11"),
+        new SystemInfo("microsoft/windows-metro.txtart")
+            .withOs("Windows")
+            .withKernel("(6\\.2|6\\.3||10\\.0)"),
 
-            new SystemInfo("microsoft/windows-metro.txtart")
-                .withOs("Windows")
-                .withKernel("(6\\.2|6\\.3||10\\.0)"),
+        new SystemInfo("microsoft/windows-flag.txtart")
+            .withOs("Windows"),
 
-            new SystemInfo("microsoft/windows-flag.txtart")
-                .withOs("Windows"),
+        // BSD
+        new SystemInfo("apple/apple.txtart")
+            .withOs("(Darwin|mac|Mac)"),
 
-            // Apple
-            new SystemInfo("apple/apple.txtart")
-                .withOs("(Darwin|mac|Mac)"),
+        // Linux
+        new SystemInfo("linux/wsl.txtart")
+            .withDistro(LinuxDistro.WSL),
 
-            // Linux
-            new SystemInfo("linux/wsl.txtart")
-                .withDistro(LinuxDistro.WSL),
+        new SystemInfo("linux/ubuntu.txtart")
+            .withDistro(LinuxDistro.UBUNTU),
 
-            new SystemInfo("linux/ubuntu.txtart")
-                .withDistro(LinuxDistro.UBUNTU),
-
-            new SystemInfo("linux/tux.txtart")
-                .withOs("^Linux"),
+        new SystemInfo("linux/tux.txtart")
+            .withOs("^Linux"),
 
     };
+    // @formatter:on
 
     public static AsciiArt getArtForSystem(String force) {
         if (force == null) {
