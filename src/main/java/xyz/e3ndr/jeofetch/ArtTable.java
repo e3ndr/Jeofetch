@@ -25,7 +25,7 @@ public class ArtTable {
                 .withOs("(Darwin|mac|Mac)"),
 
             // Linux
-            new SystemInfo("microsoft/wsl.txtart")
+            new SystemInfo("linux/wsl.txtart")
                 .withDistro(LinuxDistro.WSL),
 
             new SystemInfo("linux/ubuntu.txtart")
