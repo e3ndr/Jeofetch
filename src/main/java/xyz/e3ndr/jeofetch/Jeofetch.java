@@ -121,7 +121,7 @@ public class Jeofetch {
 
         if (linuxDistro != null) {
             table.add(
-                String.format("Distro | %s%s%s", ConsoleAttribute.BOLD.getAnsi(), linuxDistro.name, ConsoleAttribute.RESET.getAnsi())
+                String.format("Distro | %s", linuxDistro.name)
             );
         }
 
